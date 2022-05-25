@@ -26,11 +26,13 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+INCLUDEPATH += includes
+
 DISTFILES += \
 	link.svg \
 	reset.svg
 
 HEADERS += \
-	directory.h
+	includes/directory.h
 
 QT += widgets

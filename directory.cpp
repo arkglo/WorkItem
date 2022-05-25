@@ -1,5 +1,5 @@
 #include <QDir>
-#include "directory.h"
+#include <directory.h>
 #include <QDebug>
 
 Directory::Directory(QObject *parent) :
