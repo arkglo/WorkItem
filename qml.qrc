@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>TestButton.qml</file>
+        <file>test.js</file>
+        <file>TopSection.qml</file>
+        <file>ToolSection.qml</file>
+        <file>DataSection.qml</file>
+        <file>DebugSection.qml</file>
+        <file>Styles.qml</file>
+    </qresource>
+</RCC>
