@@ -10,6 +10,7 @@ Rectangle {
 
 		TextArea {
 			id: debugTextArea
+			implicitWidth: parent.width
 			property var scrollToBottom: () => {
 																		 var i = text.lastIndexOf('\n');
 																		 cursorPosition = i+1

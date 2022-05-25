@@ -76,18 +76,6 @@ RowLayout {
 			capitalization: Font.Capitalize
 		}
 
-		//				contentItem: Text {
-		//					text: checkVerbose.text
-		//					font: checkVerbose.font
-		//					opacity: enabled ? 1.0 : 0.5
-		//					color: "#333333"
-		//					horizontalAlignment: Text.AlignRight
-		////					verticalAlignment: Text.AlignVCenter
-		//					elide: Text.ElideRight
-		//					fontSizeMode: Text.HorizontalFit
-		//					minimumPointSize: 6
-		//				}
-
 		text: "Verbose"
 		checkState: verbose ? Qt.Checked : Qt.Unchecked
 		onCheckStateChanged: verbose = checkState === Qt.Checked
