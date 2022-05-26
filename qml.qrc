@@ -5,8 +5,9 @@
         <file>qml/main.qml</file>
         <file>qml/Styles.qml</file>
         <file>qml/test.js</file>
-        <file>qml/TestButton.qml</file>
         <file>qml/ToolSection.qml</file>
         <file>qml/TopSection.qml</file>
+        <file>qml/components/DataButton.qml</file>
+        <file>qml/components/ToolbarButton.qml</file>
     </qresource>
 </RCC>

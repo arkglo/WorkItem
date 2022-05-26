@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls
 import QtQuick.Layouts
+import "components"
 
 ColumnLayout {
 	spacing: style.margin
@@ -13,31 +14,35 @@ ColumnLayout {
 
 		spacing: style.margin
 
-		Button {
+		DataButton {
 			id: crButton
+			Layout.fillWidth: true
+			Layout.minimumWidth: contentItem.implicitWidth + (style.margin * 2)
+
 			text: "<b>CR ID</b><br>" + dataCRID
+			showIcon: false
 
 			enabled: dataCRID
-			opacity: enabled ? 1 : 0.5
 			onClicked: textEdit.doCopy(dataCRID)
 		}
 
 		RoundButton {
 			id: crLinkButton
-			width: style.button.roundSize
-			height: style.button.roundSize
 
-			icon.name: "edit-cut"
-			icon.source: "qrc:/images/link.svg"
-			//			text: "\u1F517"
-			//			font.family: "Segoe UI Symbol"
+			icon {
+				source: "qrc:/images/link.svg"
+				width: style.iconSize
+				height: style.iconSize
+			}
 			enabled: dataCRID
 			opacity: enabled ? 1 : 0.5
+
 			background: Rectangle {
-				color: style.debug.background
+				implicitWidth: style.toolButton.size
+				implicitHeight: style.toolButton.size
+				color: parent.down ? style.button.colorBackgroundDown : style.button.colorBackground
+				Behavior on color {ColorAnimation { duration: style.animation } }
 				radius: width / 2
-				border.color: style.button.colorBorder
-				border.width: style.button.borderWidth
 			}
 
 			onClicked: {
@@ -46,109 +51,82 @@ ColumnLayout {
 			}
 		}
 
-		Button {
+		DataButton {
 			id: parentCrButton
-			text: "<b>parent CR ID</b><br>" + dataParentCRID
+			Layout.fillWidth: true
+			Layout.minimumWidth: contentItem.implicitWidth + (style.margin * 2)
 
-			onClicked: textEdit.doCopy(dataParentCRID)
+			text: "<b>parent CR ID</b><br>" + dataParentCRID
+			showIcon: false
+
 			enabled: dataParentCRID
-			opacity: enabled ? 1 : 0.5
+			onClicked: textEdit.doCopy(dataParentCRID)
 		}
 
-		Button {
+		DataButton {
 			id: customerButton
+			Layout.fillWidth: true
+			Layout.minimumWidth: contentItem.implicitWidth + (style.margin * 2)
+
 			text: "<b>Customer</b><br>" + dataCustomer
+			iconSource: "qrc:/images/link.svg"
 
 			enabled: dataCustomer
-			opacity: enabled ? 1 : 0.5
 			onClicked: doLink("Dashboard", dataCustomer)
+		}
+
+
+		DataButton {
+			id: priorityButton
+			Layout.fillWidth: true
+			Layout.minimumWidth: contentItem.implicitWidth + (style.margin * 2)
+//			Layout.preferredWidth: 100
+//			Layout.maximumWidth: 100
+
+			text: "<b>Priority</b><br>" + dataPriority
+
+			enabled: dataCustomer
+			onClicked: textEdit.doCopy(dataPriority)
 		}
 	}// Row
 
 
-	Button {
+	DataButton {
 		id: titleButton
-
 		Layout.fillWidth: true
 		Layout.minimumWidth: 30
 		Layout.maximumWidth: parent.width
 
 		text: "<b>Title</b><br>" + dataTitle
-		clip: true
 		onClicked: textEdit.doCopy(dataTitle)
-
-		contentItem: Text {
-			text: parent.text
-			horizontalAlignment: Text.AlignLeft
-			verticalAlignment: Text.AlignVCenter
-		}
 		enabled: dataTitle
-		opacity: enabled ? 1 : 0.5
 	}
 
-	Button {
-		id: priorityButton
-
-		Layout.fillWidth: true
-		Layout.minimumWidth: 30
-		Layout.maximumWidth: parent.width
-
-		text: "<b>Priority</b><br>" + dataPriority
-		clip: true
-
-		onClicked: textEdit.doCopy(dataPriority)
-
-		contentItem: Text {
-			text: parent.text
-			horizontalAlignment: Text.AlignLeft
-			verticalAlignment: Text.AlignVCenter
-		}
-
-		enabled: dataPriority
-		opacity: enabled ? 1 : 0.5
-	}
-
-	Button {
+	DataButton {
 		id: descriptionButton
-
 		Layout.fillWidth: true
 		Layout.minimumWidth: 30
 		Layout.maximumWidth: parent.width
 
 		text: "<b>Description</b><br>" + dataDescription
-		clip: true
-
 		onClicked: textEdit.doCopy(dataDescription)
-
-		contentItem: Text {
-			text: parent.text
-			horizontalAlignment: Text.AlignLeft
-			verticalAlignment: Text.AlignVCenter
-		}
-
 		enabled: dataDescription
-		opacity: enabled ? 1 : 0.5
 	}
 
-
-	Button {
+	DataButton {
 		id: changeSummaryButton
-
 		Layout.fillWidth: true
 		Layout.minimumWidth: 30
 		Layout.maximumWidth: parent.width
+
 		text: "<b>Change Summary</b><br>" + dataChangeSummary
-		clip: true
-
 		onClicked: textEdit.doCopy(dataChangeSummary)
-
-		contentItem: Text {
-			text: parent.text
-			horizontalAlignment: Text.AlignLeft
-			verticalAlignment: Text.AlignVCenter
-		}
-
 		enabled: dataChangeSummary
-		opacity: enabled ? 1 : 0.5
 	}
+
+	//	Text { text: "color"; color: main.style.toolButton.color }
+	//	Text { text: "colorDown"; color: main.style.toolButton.colorDown }
+	//	Text { text: "colorBorder"; color: main.style.toolButton.colorBorder }
+	//	Text { text: "colorBackground"; color: main.style.toolButton.colorBackground }
+	//	Text { text: "colorBackgroundDown"; color: main.style.toolButton.colorBackgroundDown }
 }

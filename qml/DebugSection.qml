@@ -30,22 +30,27 @@ Rectangle {
 
 	RoundButton {
 		id: crLinkButton
-		width: style.button.roundSize
-		height: style.button.roundSize
+		width: style.toolButton.size
+		height: style.toolButton.size
 		anchors {
 			bottom: viewDebug.bottom
 			right: viewDebug.left
 			rightMargin: style.margin
 		}
-		icon.name: "reset"
-		icon.source: "qrc:/images/reset.svg"
+		icon {
+			source: "qrc:/images/reset.svg"
+			width: style.iconSize
+			height: style.iconSize
+			color: style.button.color
+		}
+
 		background: Rectangle {
 			color: style.debug.background
 			radius: width / 2
-			border.color: style.button.colorBorder
-			border.width: style.button.borderWidth
+			border.color: style.toolButton.colorBorder
+			border.width: style.toolButton.borderWidth
 		}
 
-		onClicked: resetDebug()
+		onClicked: reset(true)//resetDebug()
 	}
 }

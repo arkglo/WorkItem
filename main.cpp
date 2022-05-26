@@ -3,7 +3,6 @@
 #include <QDir>
 #include <QDebug>
 #include <QScreen>
-//#include <QWidget>
 
 int main(int argc, char *argv[])
 {
@@ -27,20 +26,6 @@ int main(int argc, char *argv[])
 
 	QScreen *screen = app.screens().at(0);
 	qDebug() << "screen->geometry(): " << screen->geometry();
-//	QWidget widget;
 
-//	widget.setGeometry(screen->geometry());
-
-//	QWidget::setGeometry(screen->geometry());
-
-//	QWindowList windows = app.allWindows();
-//	qDebug() << "windows: " << app.allWindows();
-//	qDebug() << "windows.count: " << windows.count();
-//	QWindow *window = windows.at(0);
-
-//	window->setGeometry(app.screens().at(0));
-
-//	QDesktopWidget *desktopWidget = qApp->desktop();
-//	setGeometry(QApplication::desktop()->screenGeometry(0));
 	return app.exec();
 }

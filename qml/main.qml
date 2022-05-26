@@ -130,21 +130,24 @@ Window {
 
 		RoundButton {
 			id: exeButton
-			width: style.button.roundSize
-			height: style.button.roundSize
+			width: style.toolButton.size
+			height: style.toolButton.size
 			anchors {
 				bottom: progressBar.top
 				left: progressBar.left
 				bottomMargin: style.margin
 			}
-			icon.name: "edit-cut"
-			icon.source: "qrc:/images/link.svg"
-
+			icon {
+				source: "qrc:/images/link.svg"
+				width: style.iconSize
+				height: style.iconSize
+				color: style.button.color
+			}
 			background: Rectangle {
 				color: style.debug.background
 				radius: width / 2
-				border.color: style.button.colorBorder
-				border.width: style.button.borderWidth
+				border.color: style.toolButton.colorBorder
+				border.width: style.toolButton.borderWidth
 			}
 
 			onClicked: doLink("EXE", directory.absolutePath)

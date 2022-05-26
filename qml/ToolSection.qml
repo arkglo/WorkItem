@@ -1,13 +1,14 @@
 import QtQuick 2.0
 import QtQuick.Controls
 import QtQuick.Layouts
+import "components"
 import "./test.js" as TEST
 
 RowLayout {
 	id: toolRow
 	spacing: style.margin
 
-	TestButton {
+	ToolbarButton {
 		id: testButton
 
 		Layout.fillWidth: true
@@ -38,8 +39,8 @@ RowLayout {
 		id: checkVerbose
 		Layout.fillWidth: true
 		Layout.minimumWidth: 30
-		Layout.preferredWidth: 50
-		Layout.maximumWidth: 100
+		Layout.preferredWidth: 120
+		Layout.maximumWidth: 120
 		height: 50
 
 		hoverEnabled: false
@@ -51,13 +52,13 @@ RowLayout {
 			anchors.left: checkVerbose.left
 			anchors.margins: checkVerbose.height * 0.1
 			radius: 3
-			border.color: style.button.colorBorder
+			border.color: style.toolButton.colorBorder
 			border.width: 1
-			color: style.button.colorBackground
+			color: style.toolButton.colorBackground
 			Rectangle {
 				visible: checkVerbose.checked
-				color: style.button.colorBorder
-				border.color: style.button.color
+				color: style.toolButton.colorBorder
+				border.color: style.toolButton.color
 				radius: 1
 				anchors.margins: 2
 				anchors.fill: parent
@@ -65,15 +66,30 @@ RowLayout {
 		}
 
 		background: Rectangle {
-			border.color: style.button.colorBorder
-			border.width: style.button.borderWidth
+			border.color: style.toolButton.colorBorder
+			border.width: style.toolButton.borderWidth
 			radius: style.radius
-			color: style.button.colorBackgroundDown
+			color: style.toolButton.colorBackgroundDown
 		}
 
 		font {
-			pointSize: style.button.textSize
+			pointSize: style.toolButton.textSize
 			capitalization: Font.Capitalize
+		}
+
+		contentItem: Text {
+			anchors.left: parent.indicator.right
+			anchors.leftMargin: main.style.button.iconSpacing
+			anchors.right: parent.right
+			clip: true
+			maximumLineCount: 1
+			text: checkVerbose.text
+			font: checkVerbose.font
+			color: checkVerbose.down ? main.style.toolButton.colorDown : main.style.toolButton.color
+			verticalAlignment: Text.AlignVCenter
+//			elide: Text.ElideRight
+			fontSizeMode: Text.HorizontalFit
+			minimumPointSize: 6
 		}
 
 		text: "Verbose"
@@ -81,7 +97,7 @@ RowLayout {
 		onCheckStateChanged: verbose = checkState === Qt.Checked
 	}
 
-	TestButton {
+	ToolbarButton {
 		id: copyButton
 		Layout.fillWidth: true
 		Layout.minimumWidth: 30
@@ -93,7 +109,7 @@ RowLayout {
 	}
 
 
-	TestButton {
+	ToolbarButton {
 		id: pasteButton
 		Layout.fillWidth: true
 		Layout.minimumWidth: 30
@@ -107,7 +123,7 @@ RowLayout {
 		}
 	}
 
-	TestButton {
+	ToolbarButton {
 		id: quitButton
 		Layout.fillWidth: true
 		Layout.minimumWidth: 30

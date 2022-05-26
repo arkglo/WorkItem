@@ -30,9 +30,9 @@ INCLUDEPATH += includes
 
 DISTFILES += \
 	link.svg \
-	reset.svg
+	reset.svg \
+	copy.svg
 
 HEADERS += \
 	includes/directory.h
 
-QT += widgets

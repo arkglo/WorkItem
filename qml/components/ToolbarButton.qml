@@ -5,7 +5,7 @@ Button {
 	id: toolButton
 
 	font {
-		pointSize: style.button.textSize
+		pointSize: style.toolButton.textSize
 		capitalization: Font.Capitalize
 	}
 
@@ -19,17 +19,17 @@ Button {
 		implicitWidth: 100
 		implicitHeight: 40
 		opacity: enabled ? 1 : 0.5
-		border.color: style.button.colorBorder
-		border.width: style.button.borderWidth
+		border.color: style.toolButton.colorBorder
+		border.width: style.toolButton.borderWidth
 		radius: style.radius
-		color: toolButton.down ? style.button.colorBackground : style.button.colorBackgroundDown
+		color: toolButton.down ? style.toolButton.colorBackground : style.toolButton.colorBackgroundDown
 	}
 
 	contentItem: Text {
 		text: toolButton.text
 		font: toolButton.font
 		opacity: enabled ? 1.0 : 0.5
-		color: toolButton.down ? main.style.button.color : main.style.button.colorDown
+		color: toolButton.down ? main.style.toolButton.colorDown : main.style.toolButton.color
 		horizontalAlignment: Text.AlignHCenter
 		verticalAlignment: Text.AlignVCenter
 		elide: Text.ElideRight
