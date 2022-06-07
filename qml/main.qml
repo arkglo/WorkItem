@@ -31,6 +31,10 @@ Window {
 	property string dataChangeSummary: ""
 	property string dataPriority: ""
 
+	property string dataWIStatus: ""
+	property string dataProgramID: ""
+	property string dataSystemType: ""
+
 	property string debugText: ""
 
 	property string link: "https://tlchange.panasonic.aero/change/PTweb?ACTION_FLAG=frameset_form&TEMPLATE_FLAG=ProblemReportView&database=/data/ccmdb/panasonic&role=ThirdParty&problem_number=LF%23"
@@ -39,6 +43,8 @@ Window {
 
 	property var dashboards: [
 		{ "name" : "AIR CANADA", "productID": 615 },
+		{ "name" : "IBERIA", "productID": 469, "systemtype": "X-SERIES.EX3" },
+		{ "name" : "IBERIA", "productID": 675 },
 		{ "name" : "LUFTHANSA TECHNIK AG", "productID": 701 }
 	]
 
@@ -222,7 +228,14 @@ Window {
 		dataChangeSummary = ""
 		dataPriority = ""
 
+		dataWIStatus = ""
+		dataProgramID = ""
+		dataSystemType = ""
+
 		progressBar.value = 0
+
+		main.width = 1368
+		main.height = 800
 	}
 	//------------------------------------------------------------
 	function doLink(type, value){
@@ -237,8 +250,11 @@ Window {
 			let productID = -1
 			for (let x in dashboards) {
 				if(value.search(dashboards[x].name) !== -1) {
-					productID = dashboards[x].productID
-					break
+					//log("systemtype: " + dashboards[x].systemtype)
+					if(dashboards[x].systemtype === undefined || dashboards[x].systemtype === dataSystemType) {
+						productID = dashboards[x].productID
+						break
+					}
 				}
 			}
 			log2(" productID: " + productID)
@@ -292,7 +308,7 @@ Window {
 	}
 
 	function setProgressBar(toThis) {
-		let total = 7
+		let total = 10
 		progressBar.value = toThis / total
 	}
 
@@ -316,9 +332,22 @@ Window {
 		let posAssignee = find("Assignee:", data)
 		dataCustomer = getField("Customer", data, posCustomer, posAssignee)
 		if(dataCustomer[dataCustomer.length-1] === "*") dataCustomer = dataCustomer.slice(0,dataCustomer.length-1)
+		dataCustomer = dataCustomer.trim()
 		log("<b>Customer2</b>:["+dataCustomer+"]")
 		data = data.substring(posAssignee)
 		setProgressBar(index++)
+
+		let posWIStatus = find("Work Item Status:", data)
+		let posProgramID = find("Program ID:", data)
+		let posSystemType = find("System Type:", data)
+		temp = find("Development Complete Date:", data)
+		dataWIStatus = getField("WorkItemStatus", data, posWIStatus, posProgramID)
+		setProgressBar(index++)
+		dataProgramID = getField("ProgramID", data, posProgramID, posSystemType)
+		setProgressBar(index++)
+		dataSystemType = getField("SystemType", data, posSystemType, temp)
+		setProgressBar(index++)
+		data = data.substring(temp)
 
 		let posTitle = find("Title:", data)
 		let posDescription = find("Description:", data)

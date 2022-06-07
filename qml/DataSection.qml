@@ -68,7 +68,7 @@ ColumnLayout {
 			Layout.fillWidth: true
 			Layout.minimumWidth: contentItem.implicitWidth + (style.margin * 2)
 
-			text: "<b>Customer</b><br>" + dataCustomer
+			text: "<b>Customer</b><br>" + dataCustomer + " / <small>" + dataSystemType + "</small>"
 			iconSource: "qrc:/images/link.svg"
 
 			enabled: dataCustomer
